@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explore Diamonds</title>
+  <style>
+    
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    background: #000;
+    color: white;
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+/* Moving Background */
+.moving-background {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+}
+
+.gradient-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(220, 38, 38, 0.3) 0%, rgba(153, 27, 27, 0.2) 100%);
+    transition: transform 1s ease-in-out;
+}
+
+.geometric-shapes {
+    position: absolute;
+    inset: 0;
+}
+
+.geometric-shapes::before,
+.geometric-shapes::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(64, 205, 230, 0.1);
+    filter: blur(40px);
+    transition: transform 1s ease-in-out;
+}
+
+.geometric-shapes::before {
+    width: 120px;
+    height: 120px;
+    left: 10%;
+    top: 10%;
+}
+
+.geometric-shapes::after {
+    width: 200px;
+    height: 200px;
+    left: 60%;
+    top: 40%;
+}
+
+.diagonal-lines {
+    position: absolute;
+    inset: 0;
+}
+
+.diagonal-lines::before,
+.diagonal-lines::after {
+    content: '';
+    position: absolute;
+    height: 1px;
+    width: 150%;
+    left: -25%;
+    background: linear-gradient(90deg, transparent 0%, rgba(239, 68, 68, 0.3) 50%, transparent 100%);
+    transition: transform 1s ease-in-out;
+}
+
+.diagonal-lines::before {
+    top: 20%;
+    transform: rotate(15deg);
+}
+
+.diagonal-lines::after {
+    top: 70%;
+    transform: rotate(15deg);
+}
+
+.floating-particles {
+    position: absolute;
+    inset: 0;
+}
+
+.floating-particles::before,
+.floating-particles::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(113, 183, 248, 0.4);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.floating-particles::before {
+    left: 20%;
+    top: 30%;
+    animation-delay: 0.5s;
+}
+
+.floating-particles::after {
+    left: 80%;
+    top: 60%;
+    animation-delay: 1.5s;
+}
+
+/* Content */
+.content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.content-side {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#title {
+    font-size: 3.5rem;
+    font-weight: 900;
+    line-height: 1.1;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#subtitle {
+    font-size: 1.25rem;
+    color: #d1d5db;
+    max-width: 24rem;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.read-more-btn {
+    background: #18b2e0;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.read-more-btn:hover {
+    background: #1e617c;
+}
+
+.dots {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #4b5563;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background: #5dcce7;
+}
+
+/* Image Side */
+.image-side {
+    position: relative;
+}
+
+.number-display {
+    position: absolute;
+    top: -3rem;
+    right: -2rem;
+    z-index: 20;
+}
+
+#number {
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(68, 205, 239, 0.2);
+    text-shadow: 0 0 30px rgba(68, 205, 239, 0.3);
+    -webkit-text-stroke: 2px rgba(68, 213, 239, 0.5);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.image-card {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.gradient-overlay-img {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5) 0%, transparent 100%);
+    z-index: 10;
+}
+
+#main-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+.image-card:hover #main-image {
+    transform: scale(1.1);
+}
+
+.image-footer {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    right: 1rem;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pulse-dot {
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pulse-inner {
+    width: 12px;
+    height: 12px;
+    background: white;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+.visual-cast {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 256px;
+    height: 4px;
+    background: #374151;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #37c8db;
+    width: 33.33%;
+    transition: width 3s linear;
+}
+
+/* Animations */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.transitioning .grid > * {
+    opacity: 0;
+    transform: scale(0.95);
+}
+
+.transitioning #number {
+    opacity: 0;
+    transform: scale(0.75) rotate(12deg);
+}
+
+.transitioning .image-card {
+    opacity: 0;
+    transform: translateY(2rem) rotate(2deg);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    #title {
+        font-size: 2.5rem;
+    }
+    
+    #number {
+        font-size: 5rem;
+        top: -2.5rem;
+        right: -1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .content {
+        padding: 1rem;
+    }
+    
+    #title {
+        font-size: 2rem;
+    }
+    
+    #number {
+        font-size: 4rem;
+    }
+    
+    .image-card {
+        height: 300px;
+    }
+}
+  </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="moving-background">
+            <div class="gradient-overlay"></div>
+            <div class="geometric-shapes"></div>
+            <div class="diagonal-lines"></div>
+            <div class="floating-particles"></div>
+        </div>
+        
+        <div class="content">
+            <div class="grid">
+                <!-- Content Side -->
+                <div class="content-side">
+                    <div class="text-content">
+                        <h1 id="title">SWITCH SOPRA</h1>
+                        <p id="subtitle">diamond store 2025</p>
+                    </div>
+                    
+                    <div class="controls">
+                        <button class="read-more-btn">READ MORE</button>
+                        <div class="dots">
+                            <div class="dot active"></div>
+                            <div class="dot"></div>
+                            <div class="dot"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Image and Number Side -->
+                <div class="image-side">
+                    <div class="number-display">
+                        <div id="number">01</div>
+                    </div>
+                    <div class="image-card">
+                        <div class="gradient-overlay-img"></div>
+                        <img id="main-image" src="diamond-buying.jpg" alt="Current Image">
+                        <div class="image-footer">
+                            <div class="pulse-dot">
+                                <div class="pulse-inner"></div>
+                            </div>
+                            <div class="visual-cast">VISUAL CAST</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+    </div>
+
+  <script>
+    // Theme toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
+      document.body.style.backgroundColor = isDark ? '#fff' : '#000';
+      document.body.style.color = isDark ? '#000' : '#fff';
+    }
+
+    // Carousel slide logic
+    const slides = document.querySelectorAll('.diamond-slide');
+    let currentIndex = 0;
+
+    function switchSlide() {
+      slides[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add('active');
+
+      const bg = document.querySelector('.diamond-carousel-background');
+      if (bg) {
+        bg.style.transform = `translateY(-${currentIndex * 50}px)`;
+      }
+    }
+
+    setInterval(switchSlide, 4000);
+
+    class AnimationLoop {
+    constructor() {
+        this.currentIndex = 0;
+        this.isTransitioning = false;
+        
+        this.animationData = [
+            {
+                id: 1,
+                image: "diamond-buying.jpg",
+                title: "DIAMOND STORE",
+                subtitle: "LETS KICK OFF 2025",
+                number: "01"
+            },
+            {
+                id: 2,
+                image: "diamond-types.jpg",
+                title: "GRAND DIAMOND STORE",
+                subtitle: "OLOO 150 YEARS",
+                number: "02"
+            },
+            {
+                id: 3,
+                image: "diamond-history.jpg",
+                title: "INFORMAL STORE",
+                subtitle: " IN OSLO, NORWAY",
+                number: "03"
+            }
+        ];
+
+        this.elements = {
+            container: document.querySelector('.container'),
+            title: document.getElementById('title'),
+            subtitle: document.getElementById('subtitle'),
+            number: document.getElementById('number'),
+            image: document.getElementById('main-image'),
+            progressFill: document.querySelector('.progress-fill'),
+            dots: document.querySelectorAll('.dot'),
+            gradientOverlay: document.querySelector('.gradient-overlay'),
+            geometricShapes: document.querySelector('.geometric-shapes'),
+            diagonalLines: document.querySelector('.diagonal-lines')
+        };
+
+        this.init();
+    }
+
+    init() {
+        this.updateContent();
+        this.startLoop();
+        this.updateMovingBackground();
+    }
+
+    updateContent() {
+        const currentData = this.animationData[this.currentIndex];
+        
+        this.elements.title.textContent = currentData.title;
+        this.elements.subtitle.textContent = currentData.subtitle;
+        this.elements.number.textContent = currentData.number;
+        this.elements.image.src = currentData.image;
+        this.elements.image.alt = currentData.title;
+
+        // Update dots
+        this.elements.dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === this.currentIndex);
+        });
+
+        // Update progress bar
+        const progressPercent = ((this.currentIndex + 1) / this.animationData.length) * 100;
+        this.elements.progressFill.style.width = `${progressPercent}%`;
+    }
+
+    updateMovingBackground() {
+        const offset = this.currentIndex;
+        
+        // Update gradient overlay
+        this.elements.gradientOverlay.style.transform = 
+            `translateX(${offset * 15}%) rotate(${offset * 5}deg)`;
+
+        // Update geometric shapes
+        this.elements.geometricShapes.style.transform = 
+            `translate(${offset * 20}px, ${offset * 15}px)`;
+
+        // Update diagonal lines
+        this.elements.diagonalLines.style.transform = 
+            `rotate(${15 + offset * 3}deg) translateX(${offset * 50}px)`;
+    }
+
+    transition() {
+        if (this.isTransitioning) return;
+        
+        this.isTransitioning = true;
+        this.elements.container.classList.add('transitioning');
+
+        setTimeout(() => {
+            this.currentIndex = (this.currentIndex + 1) % this.animationData.length;
+            this.updateContent();
+            this.updateMovingBackground();
+            
+            setTimeout(() => {
+                this.elements.container.classList.remove('transitioning');
+                this.isTransitioning = false;
+            }, 100);
+        }, 300);
+    }
+
+    startLoop() {
+        setInterval(() => {
+            this.transition();
+        }, 3000);
+    }
+}
+
+// Initialize the animation when the page loads
+document.addEventListener('DOMContentLoaded', () => {
+    new AnimationLoop();
+});
+
+// Add click handler for read more button
+document.querySelector('.read-more-btn').addEventListener('click', () => {
+    console.log('Read more clicked');
+    // Add your read more functionality here
+});
+  </script>
+</body>
+</html>

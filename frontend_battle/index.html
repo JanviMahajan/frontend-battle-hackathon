@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Diamond World</title>
+  <link rel="stylesheet" href="styles.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">✦ Diamond World</div>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="#">About</a>
+      <a href="explore.html">Explore</a>
+    </nav>
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+  </header>
+
+  <main class="hero-section">
+    <h1>
+      Explore<span class="comma"> ,</span> 
+      <span class="highlight">Learn</span><span class="comma"> ,</span> 
+      and Adore the <br> World of Diamonds.
+    </h1>
+
+    <!-- Diamond Image Container with circular animation -->
+    <div class="diamond-container">
+      <img id="diamond" src="diamond.png" alt="Diamond" class="diamond-image"/>
+    </div>
+
+    <div class="bottom-right-text">✦ Diamond World </div>
+    <div class="scroll-text">scroll</div>
+  </main>
+
+
+  <!-- talent section-taken from freelancers website -->
+  <section class="talent-section">
+  <h1>Discover the Sparkle of Diamonds</h1>
+  <div class="scrollable-gallery">
+    <div class="image-card">
+      <img src="diamond-history.jpg" alt="Diamond History">
+      <div class="image-text">
+        <h2>The Legacy of Diamonds</h2>
+        <p>Explore the rich history and symbolism of diamonds across cultures and time.</p>
+      </div>
+    </div>
+    <div class="image-card">
+      <img src="diamond-types.jpg" alt="Diamond Types">
+      <div class="image-text">
+        <h2>Types & Cuts</h2>
+        <p>Learn about different diamond cuts, shapes, and what makes each one unique.</p>
+      </div>
+    </div>
+    <div class="image-card">
+      <img src="diamond-buying.jpg" alt="Diamond Guide">
+      <div class="image-text">
+        <h2>Buying Guide</h2>
+        <p>Find the perfect diamond with our expert tips on quality, clarity, and value.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- parallex effect -->
+ 
+ <!-- Parallax Diamond Showcase Section -->
+<section class="diamond-parallax-wrapper">
+  <div class="diamond-parallax-overlay"></div>
+  <img src="diamond-hero.jpg" alt="Diamond Glow" class="diamond-parallax-image" />
+  <div class="diamond-parallax-content">
+    <h1>Shine Beyond Limits</h1>
+    <p>Diamonds that tell your story, from brilliance to elegance.</p>
+  </div>
+</section>
+
+<section class="diamond-parallax-info">
+  <h2>Discover the Brilliance of True Craftsmanship</h2>
+  <p>
+    At Diamond World, every cut is made with precision, passion, and purpose.
+    Explore collections that redefine class and bring sparkle to every moment.
+  </p>
+  <button class="learn-diamond-btn">Explore More</button>
+</section>
+
+
+<!-- logo blinking animation -->
+ <section class="logo-showcase-section">
+  <div class="logo-grid" id="logoGrid">
+    <div class="logo-item">Cursor</div>
+    <div class="logo-item">Brex</div>
+    <div class="logo-item">Remote</div>
+    <div class="logo-item">Arc</div>
+    <div class="logo-item">Runway</div>
+    <div class="logo-item">Descript</div>
+  </div>
+</section>
+
+<!-- graph -->
+ <section class="diamond-carbon-emissions">
+  
+  <div class="carbon-filters">
+    <div class="filter-group">
+      <label>Type</label>
+      <div class="filter-options">
+        <button class="active">Mined</button>
+        <button>Lab-grown</button>
+        <button>All</button>
+      </div>
+    </div>
+    <div class="filter-group">
+      <label>Status</label>
+      <div class="filter-options">
+        <button class="active">Verified</button>
+        <button>Estimated</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="carbon-title">
+    <h2>EMBODIED<br><span>CARBON EMISSIONS</span></h2>
+    <p>Intensity measured by kgCO₂e/ct</p>
+    <button class="download-data">Download the data ⭳</button>
+  </div>
+
+  <div class="carbon-key">
+    <p>──── 400 kgCO₂e/ct – Diamond Carbon Target 2030</p>
+    <p>──── 500 kgCO₂e/ct – Diamond Carbon Target 2025</p>
+  </div>
+
+  <div class="carbon-graph">
+    <div class="bar" style="height: 90%"><span>875</span></div>
+    <div class="bar" style="height: 65%"><span>617</span></div>
+    <div class="bar" style="height: 45%"><span>506</span></div>
+    <div class="bar" style="height: 10%"><span>185</span></div>
+    <div class="bar" style="height: 11%"><span>191</span></div>
+    <div class="bar" style="height: 8%"><span>122</span></div>
+    <div class="bar" style="height: 92%"><span>881</span></div>
+    <div class="bar" style="height: 65%"><span>539</span></div>
+    <div class="bar" style="height: 30%"><span>269</span></div>
+    <div class="bar" style="height: 3%"><span>29</span></div>
+    <div class="bar" style="height: 10%"><span>82</span></div>
+    <div class="bar" style="height: 5%"><span>44</span></div>
+    <div class="bar" style="height: 12%"><span>109</span></div>
+    <div class="bar" style="height: 11%"><span>106</span></div>
+    <div class="bar" style="height: 65%"><span>607</span></div>
+    <div class="bar" style="height: 58%"><span>528</span></div>
+  </div>
+</section>
+
+<!-- data -->
+ <div class="diamond-theme-vars">
+  <section class="diamond-sustainability-data">
+    <h1 class="diamond-sustainability-heading">Diamond Portfolio Sustainability Metrics</h1>
+    <div class="diamond-metrics-grid">
+
+      <div class="diamond-metric-box">
+        <div class="diamond-metric-title">Managed Portfolio Carbon Footprint (tCO₂e)</div>
+        <div class="diamond-metric-value">45,048</div>
+        <div class="diamond-metric-change">▲ 16% from 2019</div>
+        <div class="diamond-bar-graph">
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2022</span><span>45,048</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 90%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2021</span><span>14,111</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 28%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2020</span><span>32,813</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 65%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2019</span><span>38,673</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 78%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diamond-metric-box">
+        <div class="diamond-metric-title">Managed Portfolio Energy Intensity (kWh/m²)</div>
+        <div class="diamond-metric-value">123</div>
+        <div class="diamond-metric-change">▼ 22% from 2019</div>
+        <div class="diamond-bar-graph">
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2022</span><span>123</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 78%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2021</span><span>128</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 81%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2020</span><span>135</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 86%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2019</span><span>157</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="diamond-metric-box">
+        <div class="diamond-metric-title">Managed Portfolio Energy Consumption (kWh)</div>
+        <div class="diamond-metric-value">47,790,662</div>
+        <div class="diamond-metric-change">▼ 27% from 2019</div>
+        <div class="diamond-bar-graph">
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2022</span><span>47,790,662</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 73%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2021</span><span>49,324,077</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 75%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2020</span><span>48,784,205</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 74%;"></div>
+            </div>
+          </div>
+          <div class="diamond-bar-item">
+            <div class="diamond-bar-label"><span>2019</span><span>65,198,706</span></div>
+            <div class="diamond-bar-track">
+              <div class="diamond-bar-fill" style="width: 100%;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="diamond-download-button-wrapper">
+      <button class="diamond-download-button">Download Full Diamond Report</button>
+    </div>
+  </section>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  // Theme toggle
+  function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    document.querySelector('.theme-toggle').textContent = isDark ? '☀️' : '🌙';
+  }
+
+  // Parallax Scroll Animation for Diamond Hero Section
+  window.addEventListener("scroll", () => {
+    const wrapper = document.querySelector(".diamond-parallax-wrapper");
+    const diamondText = document.querySelector(".diamond-parallax-content");
+    const diamondImage = document.querySelector(".diamond-parallax-image");
+
+    if (!wrapper || !diamondText || !diamondImage) return;
+
+    const sectionTop = wrapper.offsetTop;
+    const sectionHeight = wrapper.offsetHeight;
+    const scrollY = window.scrollY;
+    const windowH = window.innerHeight;
+
+    if (scrollY + windowH > sectionTop && scrollY < sectionTop + sectionHeight) {
+      const relativeScroll = scrollY + windowH - sectionTop;
+      const progress = relativeScroll / (windowH + sectionHeight);
+
+      // Move text upward (no fade)
+      diamondText.style.transform = `translateY(${100 - progress * 300}px)`;
+
+      // Scale background image subtly
+      diamondImage.style.transform = `scale(${1 - progress * 0.12})`;
+    }
+  });
+
+  // Diamond Carousel Slide Animation
+  const slides = document.querySelectorAll('.diamond-slide');
+  let currentIndex = 0;
+
+  function switchSlide() {
+    slides[currentIndex].classList.remove('active');
+    currentIndex = (currentIndex + 1) % slides.length;
+    slides[currentIndex].classList.add('active');
+
+    // Animate background strip movement
+    const bg = document.querySelector('.diamond-carousel-background');
+    if (bg) {
+      bg.style.setProperty('--offset', `${currentIndex * 100}%`);
+      bg.style.transform = `translateY(-${currentIndex * 50}px)`;
+    }
+  }
+
+  setInterval(switchSlide, 4000);
+
+ 
+</script>
+
+
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,999 @@
+:root {
+  /* Light Theme Variables */
+  --bg-light: #ffffff;
+  --text-light: #2c264b;
+  --highlight-light: linear-gradient(to right, #4dd0e1, #2196f3);
+  --overlay-light: rgba(0, 0, 0, 0.6);
+  --scroll-track-light: #f1f1f1;
+
+  /* Dark Theme Variables */
+  --bg-dark: #0d0d0d;
+  --text-dark: #f1f1f1;
+  --highlight-dark: linear-gradient(to right, #80deea, #64b5f6);
+  --overlay-dark: rgba(255, 255, 255, 0.08);
+  --scroll-track-dark: #1a1a1a;
+
+  --scroll-thumb: #4a4a87;
+}
+
+/* Theme Setup */
+[data-theme="light"] {
+  --bg-color: var(--bg-light);
+  --text-color: var(--text-light);
+  --highlight-gradient: var(--highlight-light);
+  --overlay-color: var(--overlay-light);
+  --scroll-track-color: var(--scroll-track-light);
+}
+
+[data-theme="dark"] {
+  --bg-color: var(--bg-dark);
+  --text-color: var(--text-dark);
+  --highlight-gradient: var(--highlight-dark);
+  --overlay-color: var(--overlay-dark);
+  --scroll-track-color: var(--scroll-track-dark);
+}
+
+/* Reset and Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--bg-color);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-links a {
+  margin-left: 1.5rem;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #00bcd4;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+/* Hero Section */
+.hero-section {
+  text-align: center;
+  padding: 4rem 1rem 2rem;
+  position: relative;
+}
+
+.hero-section h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.comma {
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+.highlight {
+  background: var(--highlight-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+}
+
+.diamond-container {
+  margin-top: -40px;
+  position: relative;
+}
+
+.diamond-image {
+  max-width: 280px;
+  height: auto;
+  transition: transform 0.1s ease;
+  will-change: transform;
+}
+
+.bottom-right-text {
+  position: absolute;
+  right: 2rem;
+  bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.scroll-text {
+  position: absolute;
+  left: 1rem;
+  bottom: 1rem;
+  writing-mode: vertical-lr;
+  font-size: 0.9rem;
+}
+
+/* Talent Section */
+.talent-section {
+  text-align: center;
+  padding: 50px;
+  background-color: var(--bg-color);
+  transition: background-color 0.3s ease;
+}
+
+.talent-section h1 {
+  font-size: 2.5rem;
+  padding-top: 100px;
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+  transition: color 0.3s ease;
+}
+
+.scrollable-gallery {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.image-card {
+  position: relative;
+  min-width: 800px;
+  max-width: 1200px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.image-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  transition: transform 0.4s ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.03);
+}
+
+.image-text {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background: var(--overlay-color);
+  color: white;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.4s ease-in-out;
+}
+
+.image-card:hover .image-text {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+.image-text h2 {
+  font-size: 1.8rem;
+  margin: 0;
+  color: #f0f0f0;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+}
+
+.image-text p {
+  font-size: 1rem;
+  margin-top: 5px;
+  text-align: center;
+  color: #e0e0e0;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Scrollbar */
+.scrollable-gallery::-webkit-scrollbar {
+  height: 10px;
+}
+
+.scrollable-gallery::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-thumb);
+  border-radius: 10px;
+}
+
+.scrollable-gallery::-webkit-scrollbar-track {
+  background-color: var(--scroll-track-color);
+}
+
+/* parallex effect */
+/* Parallax Diamond Section */
+.diamond-parallax-wrapper {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+}
+
+.diamond-parallax-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+  transition: transform 1s ease;
+}
+
+.diamond-parallax-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+  z-index: 2;
+}
+
+.diamond-parallax-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: #fff;
+  max-width: 800px;
+  padding: 0 20px;
+
+  transform: translateY(100px); /* ⬇️ starts lower */
+  transition: transform 0.8s ease-out;
+}
+
+.diamond-parallax-content h1 {
+  font-size: 3rem;
+  margin: 0;
+
+  /* ✅ Optional: Add slight shadow for better visibility */
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+}
+
+.diamond-parallax-content p {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  opacity: 0.9;
+
+  /* ✅ Optional: Add slight shadow for better visibility */
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Follow-up Section */
+.diamond-parallax-info {
+   background-color: var(--bg-color);   /* adapts to theme */
+  color: var(--text-color);            /* adapts to theme */
+  padding: 80px 40px;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.diamond-parallax-info h2 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+}
+
+.diamond-parallax-info p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.learn-diamond-btn {
+  padding: 12px 24px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.learn-diamond-btn:hover {
+  background-color: #01626e;
+}
+
+/* theme based customization */
+/* Dark theme overlay: keep it dark */
+/* Dark theme: keep overlay for depth */
+[data-theme="dark"] .diamond-parallax-overlay {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8));
+  display: block;
+}
+
+/* Light theme: remove overlay completely */
+[data-theme="light"] .diamond-parallax-overlay {
+  display: none;
+}
+
+/* logo blinking animation */
+.logo-showcase-section {
+  background-color: var(--bg-color);
+  padding: 50px 0;
+  text-align: center;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.logo-item {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: gray;
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.logo-item:hover {
+  color: #00bcd4; /* Optional hover color */
+  transform: scale(1.05);
+}
+
+.logo-grid.fade-out {
+  opacity: 0;
+}
+
+[data-theme="light"] .logo-item {
+  color: #444;
+}
+[data-theme="dark"] .logo-item {
+  color: #aaa;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* graph */
+/*=============================*
+  BASE SECTION
+*=============================*/
+
+.diamond-carbon-emissions {
+  padding: 60px 40px;
+  font-family: 'Helvetica Neue', sans-serif;
+  transition: background 0.3s, color 0.3s;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/*=============================*
+  FILTERS
+*=============================*/
+
+.carbon-filters {
+  display: flex;
+  justify-content: flex-start;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.filter-group label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.filter-options button {
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.filter-options .active {
+  background-color: #00bcd4;
+  color: #fff;
+}
+
+/*=============================*
+  TITLE + DOWNLOAD BUTTON
+*=============================*/
+
+.carbon-title {
+  text-align: right;
+  margin-bottom: 30px;
+}
+
+.carbon-title h2 {
+  font-size: 48px;
+  line-height: 1.2;
+  margin: 0;
+  font-weight: 700;
+}
+
+.carbon-title h2 span {
+  color: #00bcd4;
+}
+
+.carbon-title p {
+  font-size: 14px;
+  margin-top: 10px;
+  opacity: 0.8;
+}
+
+.download-data {
+  margin-top: 12px;
+  padding: 8px 16px;
+  border-radius: 40px;
+  border: 1px solid;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+/*=============================*
+  KEY LINES
+*=============================*/
+
+.carbon-key {
+  font-size: 14px;
+  margin: 20px 0 10px;
+  opacity: 0.8;
+  color: inherit;
+}
+
+/*=============================*
+  GRAPH SECTION
+*=============================*/
+
+.carbon-graph {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 300px;
+  border-top: 2px solid;
+  padding-top: 20px;
+  overflow-x: auto;
+}
+
+.bar {
+  width: 32px;
+  background-color: #00bcd4;
+  border-radius: 4px 4px 0 0;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+/* Bar height is based on % of 300px graph height */
+.bar span {
+  position: absolute;
+  top: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 12px;
+}
+
+/*=============================*
+  LIGHT THEME
+*=============================*/
+
+body.light-theme .diamond-carbon-emissions {
+  background: #ffffff;
+  color: #222;
+}
+
+body.light-theme .filter-options button {
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+body.light-theme .filter-options .active {
+  background-color: #00bcd4;
+  color: #fff;
+}
+
+body.light-theme .download-data {
+  border-color: #00bcd4;
+  color: #00bcd4;
+}
+
+body.light-theme .download-data:hover {
+  background-color: #00bcd4;
+  color: white;
+}
+
+body.light-theme .carbon-key {
+  color: #666;
+}
+
+body.light-theme .carbon-graph {
+  border-color: #ccc;
+}
+
+body.light-theme .bar span {
+  color: #222;
+}
+
+/*=============================*
+  DARK THEME
+*=============================*/
+
+body.dark-theme .diamond-carbon-emissions {
+  background: #101820;
+  color: #e6f8f9;
+}
+
+body.dark-theme .filter-options button {
+  background-color: #1c2b34;
+  color: #a2dce4;
+}
+
+body.dark-theme .filter-options .active {
+  background-color: #00bcd4;
+  color: #000;
+}
+
+body.dark-theme .download-data {
+  border-color: #00bcd4;
+  color: #00bcd4;
+}
+
+body.dark-theme .download-data:hover {
+  background-color: #00bcd4;
+  color: #101820;
+}
+
+body.dark-theme .carbon-key {
+  color: #aaa;
+}
+
+body.dark-theme .carbon-graph {
+  border-color: #333;
+}
+
+body.dark-theme .bar span {
+  color: #ffffff;
+}
+
+/* data */
+.diamond-theme-vars {
+  --diamond-light-bg: #f9f4f2;
+  --diamond-light-text: #2d2d2d;
+  --diamond-dark-bg: #1a1a1a;
+  --diamond-dark-text: #f1f1f1;
+  --diamond-accent: #00bcd4;
+  --diamond-bar-bg: #e0dcd9;
+}
+
+[data-theme="dark"] .diamond-sustainability-data {
+  --diamond-bg-color: var(--diamond-dark-bg);
+  --diamond-text-color: var(--diamond-dark-text);
+}
+
+[data-theme="light"] .diamond-sustainability-data {
+  --diamond-bg-color: var(--diamond-light-bg);
+  --diamond-text-color: var(--diamond-light-text);
+}
+
+.diamond-sustainability-data {
+  background-color: var(--diamond-bg-color);
+  color: var(--diamond-text-color);
+  padding: 50px 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.diamond-sustainability-heading {
+  text-align: center;
+  font-size: 2.5rem;
+  color:#1c2b34;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.diamond-metrics-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.diamond-metric-box {
+  flex: 1;
+  min-width: 300px;
+}
+
+.diamond-metric-title {
+  
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.diamond-metric-value {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.diamond-metric-change {
+  font-size: 0.95rem;
+  color: var(--diamond-accent);
+}
+
+.diamond-bar-graph {
+  margin-top: 20px;
+}
+
+.diamond-bar-item {
+  margin: 10px 0;
+}
+
+.diamond-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+
+.diamond-bar-fill {
+  height: 8px;
+  border-radius: 4px;
+  background: linear-gradient(to right, var(--diamond-accent), var(--diamond-bar-bg));
+}
+
+.diamond-download-button-wrapper {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.diamond-download-button {
+  background-color: var(--diamond-accent);
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.diamond-download-button:hover {
+  opacity: 0.9;
+}
+
+.diamond-bar-track {
+  background-color: #e0dcd9; /* light gray background bar */
+  border-radius: 4px;
+  height: 8px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.diamond-bar-fill {
+  background-color: #00bcd4; /* replaced brown with cyan */
+  height: 100%;
+  border-radius: 4px 0 0 4px;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+/*  effect */
+/* Diamond Carousel Styles */
+.diamond-carousel-container {
+  position: relative;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  overflow: hidden;
+}
+
+:root.light-mode {
+  --bg-color: #f9fafb;
+  --text-color: #1f2937;
+  --accent-color: #3b82f6;
+  --muted-text: #6b7280;
+}
+
+:root.dark-mode {
+  --bg-color: #0b0f1a;
+  --text-color: #f3f4f6;
+  --accent-color: #3b82f6;
+  --muted-text: #9ca3af;
+}
+
+.diamond-moving-background,
+.diamond-gradient-overlay,
+.diamond-geometric-shapes,
+.diamond-diagonal-lines,
+.diamond-floating-particles {
+  position: absolute;
+  inset: 0;
+  transition: transform 1s ease-in-out;
+}
+
+.diamond-gradient-overlay {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.3), rgba(30, 64, 175, 0.2));
+}
+
+.diamond-geometric-shapes::before,
+.diamond-geometric-shapes::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(59, 130, 246, 0.1);
+  filter: blur(40px);
+}
+
+.diamond-geometric-shapes::before {
+  width: 120px;
+  height: 120px;
+  left: 10%;
+  top: 10%;
+}
+
+.diamond-geometric-shapes::after {
+  width: 200px;
+  height: 200px;
+  left: 60%;
+  top: 40%;
+}
+
+.diamond-diagonal-lines::before,
+.diamond-diagonal-lines::after {
+  content: '';
+  position: absolute;
+  height: 1px;
+  width: 150%;
+  left: -25%;
+  background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.4), transparent);
+}
+
+.diamond-diagonal-lines::before {
+  top: 20%;
+  transform: rotate(15deg);
+}
+
+.diamond-diagonal-lines::after {
+  top: 70%;
+  transform: rotate(15deg);
+}
+
+.diamond-carousel-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+.diamond-carousel-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  background: linear-gradient(to bottom, #38bdf8, #0ea5e9);
+  transition: transform 1s ease;
+  z-index: -1;
+}
+
+.diamond-carousel-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  align-items: center;
+}
+
+.diamond-text-content h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+}
+
+.diamond-text-content p {
+  font-size: 1.25rem;
+  color: var(--muted-text);
+}
+
+.diamond-read-more-btn {
+  background-color: var(--accent-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.diamond-dots {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.diamond-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #9ca3af;
+  transition: background-color 0.3s ease;
+}
+
+.diamond-dot.active {
+  background: var(--accent-color);
+}
+
+.diamond-image-side {
+  position: relative;
+}
+
+.diamond-number-display {
+  position: absolute;
+  top: -3rem;
+  right: -2rem;
+  z-index: 20;
+}
+
+#diamond-number {
+  font-size: 6rem;
+  font-weight: 900;
+  color: rgba(59, 130, 246, 0.2);
+  text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
+  -webkit-text-stroke: 2px rgba(59, 130, 246, 0.5);
+}
+
+.diamond-image-card {
+  position: relative;
+  height: 400px;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+#diamond-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.diamond-image-card:hover #diamond-main-image {
+  transform: scale(1.05);
+}
+
+.diamond-gradient-overlay-img {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  z-index: 10;
+}
+
+.diamond-image-footer {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+}
+
+.diamond-pulse-dot {
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.diamond-pulse-inner {
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+.diamond-visual-cast {
+  color: var(--text-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.diamond-progress-bar {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 256px;
+  height: 4px;
+  background: #374151;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.diamond-progress-fill {
+  height: 100%;
+  background: var(--accent-color);
+  width: 33.33%;
+  transition: width 3s linear;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.transitioning .diamond-carousel-grid > * {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.transitioning #diamond-number {
+  opacity: 0;
+  transform: scale(0.75) rotate(12deg);
+}
+
+.transitioning .diamond-image-card {
+  opacity: 0;
+  transform: translateY(2rem) rotate(2deg);
+}
+.diamond-slide {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.diamond-slide.active {
+  display: block;
+  opacity: 1;
+}
